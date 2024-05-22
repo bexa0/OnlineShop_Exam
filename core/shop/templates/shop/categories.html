@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block content %}
+
+{% for c in cat %}
+    <p>{{ c }}</p>
+    <p><a href="">See all goods</a></p>
+{% endfor %}
+
+{% endblock %}

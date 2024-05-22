@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="h1-profile">User Profile</h1>
+<div class="div-profile-user">
+    <p>Hello, {{ user.username }}!</p>
+
+    <!-- Display user information -->
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <p><a href="{% url 'log_out' %}">Log out</a></p>
+</div>
+
+{% endblock %}

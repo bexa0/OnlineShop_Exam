@@ -1,0 +1,35 @@
+body {
+    background-color: white;
+}
+.div-signup{
+    width: 700px;
+}
+.col-12{
+    margin-top: 10px;
+    margin-left: 600px;
+}
+.div-h1-signup{
+    margin-top: 30px;
+    margin-left: 800px;
+}
+.div-h1-login{
+    margin-top: 30px;
+    margin-left: 800px;
+}
+.h3-unauth{
+    margin-left: 300px;
+}
+.h1-profile{
+    margin-left: 300px;
+}
+.div-profile-user{
+    margin-top: 10px;
+    margin-left: 600px;
+}
+.hr-style{
+    width: 700px;
+    height: 10px;
+}
+.div-unauth-control{
+    margin-left: 100px;
+}
