@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
     name = models.CharField(max_length=55)
+    image = models.ImageField(upload_to='category/', default='category/default.jpg')
     slug = models.SlugField(max_length=255, unique=True)
 
     class Meta:
@@ -41,3 +43,27 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CartItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return self.product
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(CartItem)
+    is_paid = models.BooleanField(default=False)
+
+
+class Contact(models.Model):
+    name_shop = models.CharField(max_length=55)
+    location = models.CharField(max_length=255)
+    phone = models.PositiveIntegerField()
+    email = models.EmailField(max_length=255)
+
+    def __str__(self):
+        return self.name_shop

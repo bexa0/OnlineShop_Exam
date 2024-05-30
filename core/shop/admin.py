@@ -1,6 +1,9 @@
 from django.contrib import admin
-from shop.models import Product, Category
-from .models import Category, Product
+from .models import *
+
+admin.site.register(Cart)
+admin.site.register(CartItem)
+admin.site.register(Contact)
 
 
 @admin.register(Category)
@@ -16,3 +19,4 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'available']
     prepopulated_fields = {'slug': ('name',)}
+
