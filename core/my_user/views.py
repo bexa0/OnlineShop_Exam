@@ -8,7 +8,7 @@ from my_user.forms import RegisterForm
 
 class SignUpView(CreateView):
     template_name = 'my_user/sign_up.html'
-    form_class = RegisterForm
+    form_class = UserCreationForm
     success_url = reverse_lazy('log_in')
 
     def get(self, request, *args, **kwargs):

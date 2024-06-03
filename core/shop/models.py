@@ -33,6 +33,7 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
+        get_latest_by = 'date'
         ordering = ['name']
 
         indexes = [

@@ -5,7 +5,7 @@ from .models import AbstractUserClass
 class RegisterForm(UserCreationForm):
     class Meta:
         model = AbstractUserClass
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2']
 
 
 class AuthForm(AuthenticationForm):

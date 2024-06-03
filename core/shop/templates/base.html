@@ -98,7 +98,7 @@
           </li>
           <!--            <li><a href="">Shop</a></li>-->
           <li><a href="{% url 'categories' %}">Category</a></li>
-          <li><a href="#">New Arrivals</a></li>
+
           <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
       </div>
@@ -122,6 +122,7 @@
 {% endif %}
     {% block content %}
     {% endblock %}
+{% if request.user.is_authenticated %}
   <footer class="site-footer border-top">
       <div class="container">
         <div class="row">
@@ -196,5 +197,6 @@
 <!--        </div>-->
       </div>
     </footer>
+{% endif %}
 </body>
 </html>

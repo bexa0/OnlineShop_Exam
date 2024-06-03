@@ -22,7 +22,7 @@ def main_view(request):
 
 def category_list_view(request):
     p = Paginator(Category.objects.all(), 4)
-    context = {'cat': Category.objects.all(), '': Product.objects.filter(category__name='T-shirts')}
+    context = {'cat': Category.objects.all()}
 
     return render(request, 'shop/categories.html', context)
 
@@ -100,12 +100,33 @@ def add_to_cart(request, product_id):
     return redirect('category_detail', category_id)
 
 
+def favorite(request):
+    my_favorite = request.session.get('favorite', [])
+    if request.method == 'POST':
+        if request.POST.get('add'):
+            print(my_favorite)
+
+    return render(request, 'shop/favorites.html')
+
+
 def add_to_favorite(request, id):
     if request.method == 'POST':
         if not request.session.get('favorites'):
             request.session['favorites'] = list() # если нету то создает пустой список
         else:
             request.session['favorites'] = list(request.session['favorites']) # если есть то создает список с предудушими значениями которые были записаны
+
+        item_exist = next((item for item in request.session['favorites'] if item['type'] == request.POST.get('type') and item['id'] == id), False)
+
+        add_data = {
+            'type': request.POST.get('type'),
+            'id': id,
+        }
+
+        if not item_exist:
+            request.session['favorites'].append(add_data)
+            request.session.modified = True
+    return redirect(request.POST.get('favorite'))
 
 
 def contact(request):
@@ -119,8 +140,8 @@ def about(request):
     return render(request, 'shop/about.html')
 
 
-def latest_objects(request):
-    product = Product.objects.filter(date__gte=datetime.date.today() - datetime.timedelta(days=5))
-    context = {'latest_pr': product}
-
-    return render(request, 'shop/latest_products.html', context)
+# def latest_objects(request):
+#     products = Product.objects.all().order_by('-created')[0]
+#     context = {'latest_pr': products}
+#
+#     return render(request, 'shop/latest_products.html', context)
